@@ -53,5 +53,4 @@ describe Robot do
     robot.move()
     expect(robot.report()).to eql([4, 4, World::NORTH])
   end
-
 end

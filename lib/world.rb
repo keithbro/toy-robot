@@ -1,15 +1,12 @@
 class World
-  NORTH = 1
-  EAST  = 2
-  SOUTH = 3
-  WEST  = 4
+  NORTH = "N"
+  EAST  = "E"
+  SOUTH = "S"
+  WEST  = "W"
 
   def move(robot)
-    x_delta = { WEST => -1, EAST => +1 }[robot.direction] || 0
-    y_delta = { NORTH => +1, SOUTH => -1 }[robot.direction] || 0
-
-    new_x = robot.x + x_delta
-    new_y = robot.y + y_delta
+    new_x = robot.x + ( { WEST  => -1, EAST  => +1 }[robot.direction] || 0 )
+    new_y = robot.y + ( { SOUTH => -1, NORTH => +1 }[robot.direction] || 0 )
 
     if position_is_valid(new_x, new_y)
       robot.x = new_x
@@ -21,28 +18,29 @@ class World
     new_direction = {
       NORTH => WEST, WEST => SOUTH, SOUTH => EAST, EAST => NORTH,
     }[robot.direction]
+
     raise "Invalid robot.direction" unless robot.direction
     robot.direction = new_direction
   end
 
   def right(robot)
     new_direction = {
-      WEST => NORTH, SOUTH => WEST, EAST => SOUTH, NORTH => EAST,
+      NORTH => EAST, EAST => SOUTH, SOUTH => WEST, WEST => NORTH,
     }[robot.direction]
+
     raise "Invalid robot.direction" unless robot.direction
     robot.direction = new_direction
   end
 
   def place(robot, x, y, direction)
-    if !position_is_valid(x, y)
-      raise "Invalid position (#{x}, #{y})"
-    end
+    raise "Invalid position (#{x}, #{y})" if not position_is_valid(x, y)
 
     robot.direction = direction
     robot.x = x
     robot.y = y
     robot.world = self
-    self
+
+    robot
   end
 
   private
