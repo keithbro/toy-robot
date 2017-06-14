@@ -1,3 +1,7 @@
 FROM ruby:2.4.1-alpine
 
-CMD [ "ruby", "-v" ]
+COPY app /app
+
+WORKDIR app
+
+CMD [ "ruby", "bin/toy-robot" ]
