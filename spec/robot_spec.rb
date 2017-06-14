@@ -30,4 +30,11 @@ describe Robot do
     robot.move()
     expect(robot.report()).to eql([3, 3, World::NORTH])
   end
+
+  it "cannot move off the table" do
+    world.place(robot, 4, 4, World::NORTH)
+    robot.move()
+    expect(robot.report()).to eql([4, 4, World::NORTH])
+  end
+
 end
