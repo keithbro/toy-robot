@@ -7,14 +7,18 @@ class Robot
   attr_writer :world
 
   def move()
-    @world.move(self)
+    @world ? @world.move(self) : nil
   end
 
   def left()
-    @world.left(self)
+    @world ? @world.left(self) : nil
+  end
+
+  def right()
+    @world ? @world.right(self) : nil
   end
 
   def report()
-    [@x, @y, @direction]
+    @world ? [@x, @y, @direction] : nil
   end
 end

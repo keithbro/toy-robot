@@ -19,10 +19,15 @@ class World
 
   def left(robot)
     new_direction = {
-      NORTH => WEST,
-      WEST  => SOUTH,
-      SOUTH => EAST,
-      EAST  => NORTH,
+      NORTH => WEST, WEST => SOUTH, SOUTH => EAST, EAST => NORTH,
+    }[robot.direction]
+    raise "Invalid robot.direction" unless robot.direction
+    robot.direction = new_direction
+  end
+
+  def right(robot)
+    new_direction = {
+      WEST => NORTH, SOUTH => WEST, EAST => SOUTH, NORTH => EAST,
     }[robot.direction]
     raise "Invalid robot.direction" unless robot.direction
     robot.direction = new_direction
