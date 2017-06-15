@@ -5,13 +5,11 @@ describe World do
     world = World.new()
     robot = Robot.new()
 
-    expect {
-      world.place(robot, 5, 5, 'NORTH')
-    }.to raise_error(RuntimeError, "Invalid position (5, 5)")
+    expect(world.place(robot, 5, 5, 'NORTH')).to eql(nil)
+    expect(world.report(robot)).to eql([ ])
 
-    expect {
-      world.place(robot, -1, -1, 'NORTH')
-    }.to raise_error(RuntimeError, "Invalid position (-1, -1)")
+    expect(world.place(robot, -1, -1, 'NORTH')).to eql(nil)
+    expect(world.report(robot)).to eql([ ])
   end
 
   it "handles the unplaced robot" do
@@ -21,6 +19,7 @@ describe World do
     expect(world.left(robot)).to eql(nil)
     expect(world.right(robot)).to eql(nil)
     expect(world.move(robot)).to eql(nil)
+    expect(world.report(robot)).to eql([ ])
   end
 
 end

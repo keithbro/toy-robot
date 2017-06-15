@@ -33,7 +33,7 @@ class World
   end
 
   def place(robot, x, y, direction)
-    raise "Invalid position (#{x}, #{y})" if not position_is_valid(x, y)
+    return unless position_is_valid(x, y)
 
     robot.direction = direction
     robot.x = x
