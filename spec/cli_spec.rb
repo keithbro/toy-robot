@@ -53,7 +53,7 @@ describe 'CLI.execute' do
   it 'should handle invalid args' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE' , 'Invalid Command')
+    expect_execute(cli, 'PLACE' , 'Invalid Arguments')
     expect_execute(cli, 'REPORT', '')
   end
 
