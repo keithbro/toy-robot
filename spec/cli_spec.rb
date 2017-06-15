@@ -1,9 +1,5 @@
 require 'cli'
 
-def expect_execute(cli, command, expected_output)
-  expect(cli.execute(command)).to eql(expected_output)
-end
-
 describe 'CLI.execute' do
   it 'should handle an unplaced REPORT' do
     cli = CLI.new()
@@ -56,7 +52,23 @@ describe 'CLI.execute' do
     expect_execute(cli, 'PLACE' , 'Invalid Arguments')
     expect_execute(cli, 'REPORT', '')
   end
-
-
-
 end
+
+describe 'CLI.run' do
+  it 'should accept empty string to exit' do
+    cli = CLI.new()
+
+    mock_stdout = StringIO.new
+    $stdout = mock_stdout
+    allow(cli).to receive(:gets_chomp).and_return('PLACE 2,3,EAST', 'REPORT', '')
+
+    cli.run()
+    expect(mock_stdout.string).to eql("2,3,EAST\n")
+  end
+end
+
+def expect_execute(cli, command, expected_output)
+  expect(cli.execute(command)).to eql(expected_output)
+end
+
+

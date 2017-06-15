@@ -5,18 +5,25 @@ class CLI
   def initialize()
     @robot = Robot.new
     @world = World.new
+    @command_types = [ 'PLACE', 'LEFT', 'RIGHT', 'MOVE', 'REPORT' ]
   end
 
   def run()
-    while command = gets.chomp
-      puts execute(command)
+    while command = gets_chomp
+      break if command.eql?('')
+      output = execute(command)
+      puts output if output and not output.eql?("")
     end
+  end
+
+  def gets_chomp
+    gets.chomp
   end
 
   def execute(command)
     command_type = command.split(/ /)[0]
 
-    unless [ 'PLACE', 'LEFT', 'RIGHT', 'MOVE', 'REPORT' ].include?(command_type)
+    unless @command_types.include?(command_type)
       return "Invalid Command"
     end
 
