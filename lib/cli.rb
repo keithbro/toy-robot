@@ -19,7 +19,11 @@ class CLI
       .split(/,/)
       .map { |arg| arg.match?(/^\d+$/) ? arg.to_i : arg }
 
-    result = @world.send(world_method, @robot, *args)
+    begin
+      result = @world.send(world_method, @robot, *args)
+    rescue
+      return "Invalid Command"
+    end
 
     return result.join(',') if command_type.eql?('REPORT')
 

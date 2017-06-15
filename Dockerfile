@@ -6,6 +6,5 @@ RUN bundle install
 
 COPY bin /app/bin
 COPY lib /app/lib
-COPY spec /app/spec
 
 CMD [ "bundle", "exec", "ruby", "-I", "lib", "bin/toy-robot" ]
