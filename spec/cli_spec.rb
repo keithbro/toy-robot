@@ -55,15 +55,17 @@ describe 'CLI.execute' do
 end
 
 describe 'CLI.run' do
+  expected_greeting = "Robot is ready to accept commands, type EXIT to exit."
+
   it 'should accept empty string to exit' do
-    cli = CLI.new()
+    expect_stdout(
+      [ 'PLACE 2,3,EAST', 'REPORT', 'EXIT' ],
+      "#{expected_greeting}\n2,3,EAST\n",
+    )
+  end
 
-    mock_stdout = StringIO.new
-    $stdout = mock_stdout
-    allow(cli).to receive(:gets_chomp).and_return('PLACE 2,3,EAST', 'REPORT', '')
-
-    cli.run()
-    expect(mock_stdout.string).to eql("2,3,EAST\n")
+  it 'should greet the user' do
+    expect_stdout([ 'EXIT' ], "#{expected_greeting}\n")
   end
 end
 
@@ -71,4 +73,14 @@ def expect_execute(cli, command, expected_output)
   expect(cli.execute(command)).to eql(expected_output)
 end
 
+def expect_stdout(commands, expected_stdout)
+  cli = CLI.new()
+
+  mock_stdout = StringIO.new
+  $stdout = mock_stdout
+
+  allow(cli).to receive(:gets_chomp).and_return(*commands)
+  cli.run()
+  expect(mock_stdout.string).to eql(expected_stdout)
+end
 
