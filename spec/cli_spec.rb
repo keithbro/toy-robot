@@ -42,6 +42,14 @@ describe 'CLI.execute' do
     expect_execute(cli, 'REPORT'         , '2,3,NORTH')
   end
 
+  it 'should handle invalid commands' do
+    cli = CLI.new()
+
+    expect_execute(cli, 'PLACE 2,2,NORTH', '')
+    expect_execute(cli, 'JUMP'           , 'Invalid Command')
+    expect_execute(cli, 'REPORT'         , '2,2,NORTH')
+  end
+
 
 
 end
