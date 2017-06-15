@@ -1,6 +1,6 @@
 class World
   def move(robot)
-    return unless robot.world
+    return unless robot.has_been_placed
 
     new_x = robot.x + ( { 'WEST'  => -1, 'EAST'  => +1 }[robot.direction] || 0 )
     new_y = robot.y + ( { 'SOUTH' => -1, 'NORTH' => +1 }[robot.direction] || 0 )
@@ -12,18 +12,17 @@ class World
   end
 
   def left(robot)
-    return unless robot.world
+    return unless robot.has_been_placed
 
     new_direction = {
       'NORTH' => 'WEST', 'WEST' => 'SOUTH', 'SOUTH' => 'EAST', 'EAST' => 'NORTH',
     }[robot.direction]
 
-    # can we add enum to robot?
     robot.direction = new_direction if new_direction
   end
 
   def right(robot)
-    return unless robot.world
+    return unless robot.has_been_placed
 
     new_direction = {
       'NORTH' => 'EAST', 'EAST' => 'SOUTH', 'SOUTH' => 'WEST', 'WEST' => 'NORTH',
@@ -45,6 +44,8 @@ class World
   end
 
   def report(robot)
+    return unless robot.has_been_placed
+
     [robot.x, robot.y, robot.direction].compact
   end
 

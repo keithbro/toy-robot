@@ -6,6 +6,10 @@ class Robot
   attr_accessor :y
   attr_accessor :world
 
+  def has_been_placed
+    not @world.nil?
+  end
+
   def move()
     @world ? @world.move(self) : nil
   end
@@ -19,6 +23,6 @@ class Robot
   end
 
   def report()
-    @world ? @world.report(self) : [ ]
+    @world ? @world.report(self) : nil
   end
 end

@@ -4,44 +4,44 @@ describe 'CLI.execute' do
   it 'should handle an unplaced REPORT' do
     cli = CLI.new()
 
-    expect_execute(cli, 'REPORT', '')
+    expect_execute(cli, 'REPORT', nil)
   end
 
   it 'should handle PLACE' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE 2,2,NORTH', ''         )
+    expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'REPORT'         , '2,2,NORTH')
   end
 
   it 'should handle LEFT' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE 2,2,NORTH', '')
-    expect_execute(cli, 'LEFT'           , '')
+    expect_execute(cli, 'PLACE 2,2,NORTH', nil)
+    expect_execute(cli, 'LEFT'           , nil)
     expect_execute(cli, 'REPORT'         , '2,2,WEST')
   end
 
   it 'should handle RIGHT' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE 2,2,NORTH', '')
-    expect_execute(cli, 'RIGHT'          , '')
+    expect_execute(cli, 'PLACE 2,2,NORTH', nil)
+    expect_execute(cli, 'RIGHT'          , nil)
     expect_execute(cli, 'REPORT'         , '2,2,EAST')
   end
 
   it 'should handle MOVE' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE 2,2,NORTH', '')
-    expect_execute(cli, 'MOVE'           , '')
+    expect_execute(cli, 'PLACE 2,2,NORTH', nil)
+    expect_execute(cli, 'MOVE'           , nil)
     expect_execute(cli, 'REPORT'         , '2,3,NORTH')
   end
 
   it 'should handle invalid commands' do
     cli = CLI.new()
 
-    expect_execute(cli, 'PLACE 2,2,NORTH', '')
+    expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'JUMP'           , 'Invalid Command')
     expect_execute(cli, 'REPORT'         , '2,2,NORTH')
   end
@@ -50,7 +50,7 @@ describe 'CLI.execute' do
     cli = CLI.new()
 
     expect_execute(cli, 'PLACE' , 'Invalid Arguments')
-    expect_execute(cli, 'REPORT', '')
+    expect_execute(cli, 'REPORT', nil)
   end
 end
 

@@ -6,10 +6,10 @@ describe World do
     robot = Robot.new()
 
     expect(world.place(robot, 5, 5, 'NORTH')).to eql(nil)
-    expect(world.report(robot)).to eql([ ])
+    expect(world.report(robot)).to eql(nil)
 
     expect(world.place(robot, -1, -1, 'NORTH')).to eql(nil)
-    expect(world.report(robot)).to eql([ ])
+    expect(world.report(robot)).to eql(nil)
   end
 
   it "handles the unplaced robot" do
@@ -19,7 +19,7 @@ describe World do
     expect(world.left(robot)).to eql(nil)
     expect(world.right(robot)).to eql(nil)
     expect(world.move(robot)).to eql(nil)
-    expect(world.report(robot)).to eql([ ])
+    expect(world.report(robot)).to eql(nil)
   end
 
   it "handles invalid directions" do
@@ -28,6 +28,6 @@ describe World do
 
     world.place(robot, 1, 2, 'E')
 
-    expect(world.report(robot)).to eql([ ])
+    expect(world.report(robot)).to eql(nil)
   end
 end

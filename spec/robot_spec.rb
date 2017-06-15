@@ -4,7 +4,7 @@ require "world"
 describe Robot do
   it "ignores if its not in the world" do
     robot = Robot.new()
-    expect(robot.report()).to eql([ ])
+    expect(robot.report()).to eql(nil)
     expect(robot.move()).to eql(nil)
     expect(robot.left()).to eql(nil)
     expect(robot.right()).to eql(nil)
