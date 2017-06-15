@@ -27,8 +27,8 @@ class CLI
 
     begin
       result = @world.send(world_method, @robot, *args)
-    rescue
-      return "Invalid Command"
+    rescue ArgumentError
+      return "Invalid Arguments"
     end
 
     return result.join(',') if command_type.eql?('REPORT')
