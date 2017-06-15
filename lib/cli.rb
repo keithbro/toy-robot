@@ -9,8 +9,10 @@ class CLI
   end
 
   def run()
+    puts "Robot is ready to accept commands, type EXIT to exit."
+
     while command = gets_chomp
-      break if command.eql?('')
+      break if command.eql?('EXIT')
       output = execute(command)
       puts output if output and not output.eql?("")
     end
