@@ -7,4 +7,4 @@ RUN bundle install
 COPY bin /app/bin
 COPY lib /app/lib
 
-CMD [ "bundle", "exec", "ruby", "-I", "lib", "bin/toy-robot" ]
+CMD [ "bundle", "exec", "ruby", "-I", "lib", "bin/toy-robot-cli" ]

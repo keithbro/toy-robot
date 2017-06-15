@@ -7,6 +7,12 @@ class CLI
     @world = World.new
   end
 
+  def run()
+    while command = gets.chomp
+      puts execute(command)
+    end
+  end
+
   def execute(command)
     command_type = command.split(/ /)[0]
 
