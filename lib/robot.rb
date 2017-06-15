@@ -1,14 +1,13 @@
-require "world"
-
 class Robot
   attr_accessor :direction
   attr_accessor :x
   attr_accessor :y
   attr_accessor :world
 
-  def has_been_placed
-    not @world.nil?
-  end
+  # These methods serve as convenience methods which proxy to the world that
+  # the robot is in for their logic. The idea of this is that the world is
+  # the authority on whether the robot can move, turn or be placed and
+  # ultimately it is up to the world to either allow or deny that.
 
   def move()
     @world ? @world.move(self) : nil
