@@ -1,12 +1,7 @@
 class World
-  NORTH = "N"
-  EAST  = "E"
-  SOUTH = "S"
-  WEST  = "W"
-
   def move(robot)
-    new_x = robot.x + ( { WEST  => -1, EAST  => +1 }[robot.direction] || 0 )
-    new_y = robot.y + ( { SOUTH => -1, NORTH => +1 }[robot.direction] || 0 )
+    new_x = robot.x + ( { 'WEST'  => -1, 'EAST'  => +1 }[robot.direction] || 0 )
+    new_y = robot.y + ( { 'SOUTH' => -1, 'NORTH' => +1 }[robot.direction] || 0 )
 
     if position_is_valid(new_x, new_y)
       robot.x = new_x
@@ -16,16 +11,17 @@ class World
 
   def left(robot)
     new_direction = {
-      NORTH => WEST, WEST => SOUTH, SOUTH => EAST, EAST => NORTH,
+      'NORTH' => 'WEST', 'WEST' => 'SOUTH', 'SOUTH' => 'EAST', 'EAST' => 'NORTH',
     }[robot.direction]
 
     raise "Invalid robot.direction" unless robot.direction
+    # can we add enum to robot?
     robot.direction = new_direction
   end
 
   def right(robot)
     new_direction = {
-      NORTH => EAST, EAST => SOUTH, SOUTH => WEST, WEST => NORTH,
+      'NORTH' => 'EAST', 'EAST' => 'SOUTH', 'SOUTH' => 'WEST', 'WEST' => 'NORTH',
     }[robot.direction]
 
     raise "Invalid robot.direction" unless robot.direction
