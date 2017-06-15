@@ -43,6 +43,10 @@ class World
     robot
   end
 
+  def report(robot)
+    [robot.x, robot.y, robot.direction]
+  end
+
   private
     def position_is_valid(x, y)
       max_x = 4
