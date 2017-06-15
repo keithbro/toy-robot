@@ -23,6 +23,10 @@ class CLI
     gets.chomp
   end
 
+  # Executes a single command. Returns an appropriate string message if the
+  # command or the arguments are invalid. Returns a string message in the case
+  # of REPORT. Otherwise returns nil.
+
   def execute(command)
     command_type = command.split(/ /)[0]
 
