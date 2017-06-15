@@ -1,11 +1,11 @@
 FROM ruby:2.4.1-alpine
-
-COPY bin /app/bin
-COPY Gemfile /app
-COPY spec /app/spec
-
 WORKDIR app
 
+COPY Gemfile /app
 RUN bundle install
 
-CMD [ "bundle", "exec", "ruby", "bin/toy-robot" ]
+COPY bin /app/bin
+COPY lib /app/lib
+COPY spec /app/spec
+
+CMD [ "bundle", "exec", "ruby", "-I", "lib", "bin/toy-robot" ]
