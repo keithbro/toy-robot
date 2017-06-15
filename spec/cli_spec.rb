@@ -5,25 +5,34 @@ def expect_execute(cli, command, expected_output)
 end
 
 describe 'CLI.execute' do
-  it 'should handle an empty REPORT' do
+  it 'should handle an unplaced REPORT' do
     cli = CLI.new()
 
     expect_execute(cli, 'REPORT', '')
   end
 
-  it 'should handle a PLACE' do
+  it 'should handle PLACE' do
     cli = CLI.new()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', ''         )
     expect_execute(cli, 'REPORT'         , '2,2,NORTH')
   end
 
-  it 'should handle a LEFT' do
+  it 'should handle LEFT' do
     cli = CLI.new()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', '')
     expect_execute(cli, 'LEFT'           , '')
     expect_execute(cli, 'REPORT'         , '2,2,WEST')
   end
+
+  it 'should handle RIGHT' do
+    cli = CLI.new()
+
+    expect_execute(cli, 'PLACE 2,2,NORTH', '')
+    expect_execute(cli, 'RIGHT'          , '')
+    expect_execute(cli, 'REPORT'         , '2,2,EAST')
+  end
+
 
 end
