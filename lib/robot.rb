@@ -19,6 +19,6 @@ class Robot
   end
 
   def report()
-    @world ? @world.report(self) : nil
+    @world ? @world.report(self) : [ ]
   end
 end
