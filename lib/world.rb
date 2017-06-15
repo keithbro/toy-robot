@@ -14,9 +14,8 @@ class World
       'NORTH' => 'WEST', 'WEST' => 'SOUTH', 'SOUTH' => 'EAST', 'EAST' => 'NORTH',
     }[robot.direction]
 
-    raise "Invalid robot.direction" unless robot.direction
     # can we add enum to robot?
-    robot.direction = new_direction
+    robot.direction = new_direction if new_direction
   end
 
   def right(robot)
@@ -24,8 +23,7 @@ class World
       'NORTH' => 'EAST', 'EAST' => 'SOUTH', 'SOUTH' => 'WEST', 'WEST' => 'NORTH',
     }[robot.direction]
 
-    raise "Invalid robot.direction" unless robot.direction
-    robot.direction = new_direction
+    robot.direction = new_direction if new_direction
   end
 
   def place(robot, x, y, direction)
