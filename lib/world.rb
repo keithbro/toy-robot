@@ -1,5 +1,7 @@
 class World
   def move(robot)
+    return unless robot.world
+
     new_x = robot.x + ( { 'WEST'  => -1, 'EAST'  => +1 }[robot.direction] || 0 )
     new_y = robot.y + ( { 'SOUTH' => -1, 'NORTH' => +1 }[robot.direction] || 0 )
 
@@ -10,6 +12,8 @@ class World
   end
 
   def left(robot)
+    return unless robot.world
+
     new_direction = {
       'NORTH' => 'WEST', 'WEST' => 'SOUTH', 'SOUTH' => 'EAST', 'EAST' => 'NORTH',
     }[robot.direction]
@@ -19,6 +23,8 @@ class World
   end
 
   def right(robot)
+    return unless robot.world
+
     new_direction = {
       'NORTH' => 'EAST', 'EAST' => 'SOUTH', 'SOUTH' => 'WEST', 'WEST' => 'NORTH',
     }[robot.direction]

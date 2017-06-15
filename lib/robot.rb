@@ -4,7 +4,7 @@ class Robot
   attr_accessor :direction
   attr_accessor :x
   attr_accessor :y
-  attr_writer :world
+  attr_accessor :world
 
   def move()
     @world ? @world.move(self) : nil
