@@ -34,5 +34,14 @@ describe 'CLI.execute' do
     expect_execute(cli, 'REPORT'         , '2,2,EAST')
   end
 
+  it 'should handle MOVE' do
+    cli = CLI.new()
+
+    expect_execute(cli, 'PLACE 2,2,NORTH', '')
+    expect_execute(cli, 'MOVE'           , '')
+    expect_execute(cli, 'REPORT'         , '2,3,NORTH')
+  end
+
+
 
 end
