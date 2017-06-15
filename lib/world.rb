@@ -34,6 +34,7 @@ class World
 
   def place(robot, x, y, direction)
     return unless position_is_valid(x, y)
+    return unless direction_is_valid(direction)
 
     robot.direction = direction
     robot.x = x
@@ -55,5 +56,9 @@ class World
       min_y = 0
 
       x <= max_x && y <= max_y && x >= min_x && y >= min_y
+    end
+
+    def direction_is_valid(direction)
+      [ 'NORTH', 'EAST', 'SOUTH', 'WEST' ].include?(direction)
     end
 end

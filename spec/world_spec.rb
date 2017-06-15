@@ -22,4 +22,12 @@ describe World do
     expect(world.report(robot)).to eql([ ])
   end
 
+  it "handles invalid directions" do
+    world = World.new()
+    robot = Robot.new()
+
+    world.place(robot, 1, 2, 'E')
+
+    expect(world.report(robot)).to eql([ ])
+  end
 end
