@@ -44,7 +44,7 @@ class World
   end
 
   def report(robot)
-    [robot.x, robot.y, robot.direction]
+    [robot.x, robot.y, robot.direction].compact
   end
 
   private

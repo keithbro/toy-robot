@@ -19,6 +19,6 @@ class Robot
   end
 
   def report()
-    @world ? [@x, @y, @direction] : nil
+    @world ? @world.report(self) : nil
   end
 end

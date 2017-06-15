@@ -17,6 +17,6 @@ class CLI
 
     return result.join(',') if world_method.eql?('report')
 
-    nil
+    ""
   end
 end
