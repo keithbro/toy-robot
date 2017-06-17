@@ -48,7 +48,7 @@ class CLI
     begin
       result = @robot.send(robot_method, *args)
 
-    # ArgumentError is user-error whereas anything else would be unexpected
+    # ArgumentError is user error whereas anything else would be unexpected
     rescue ArgumentError
       return "Invalid Arguments"
     end

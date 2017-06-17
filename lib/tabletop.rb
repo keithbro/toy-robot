@@ -2,7 +2,11 @@ class Tabletop
   # Returns the direction an entity would be facing if it turned left from the
   # given direction.
 
-  def left(direction)
+  def direction_after_left_turn(direction)
+    unless direction_is_valid?(direction)
+      raise "Invalid initial direction (#{direction})"
+    end
+
     {
       'NORTH' => 'WEST',
       'WEST'  => 'SOUTH',
@@ -14,7 +18,11 @@ class Tabletop
   # Returns the direction that an entity would be facing if it turned right from
   # the given direction.
 
-  def right(direction)
+  def direction_after_right_turn(direction)
+    unless direction_is_valid?(direction)
+      raise "Invalid initial direction (#{direction})"
+    end
+
     {
       'NORTH' => 'EAST',
       'EAST'  => 'SOUTH',
@@ -29,12 +37,15 @@ class Tabletop
   #
   # However if the new location is not on the table, returns nil.
 
-  def move(x, y, direction)
+  def coords_after_move(x, y, direction)
+    unless placement_is_valid?(x, y, direction)
+      raise "Invalid initial state (#{x}, #{y}, #{direction})"
+    end
+
     new_x = x + ( { 'WEST'  => -1, 'EAST'  => +1 }[direction] || 0 )
     new_y = y + ( { 'SOUTH' => -1, 'NORTH' => +1 }[direction] || 0 )
 
-    # TODO maybe throw exception?
-    coordinates_are_valid?(new_x, new_y) ? [ new_x, new_y ] : nil
+    coordinates_are_valid?(new_x, new_y) ? [ new_x, new_y ] : [ x, y ]
   end
 
   def placement_is_valid?(x, y, direction)

@@ -6,13 +6,7 @@ class Robot
 
   def move()
     return unless @tabletop
-
-    new_x, new_y = @tabletop.move(@x, @y, @direction)
-    return unless new_x and new_y
-
-    @x = new_x
-    @y = new_y
-
+    @x, @y = @tabletop.coords_after_move(@x, @y, @direction)
     self
   end
 
@@ -21,7 +15,7 @@ class Robot
 
   def left()
     return unless @tabletop
-    @direction = @tabletop.left(@direction)
+    @direction = @tabletop.direction_after_left_turn(@direction)
     self
   end
 
@@ -30,7 +24,7 @@ class Robot
 
   def right()
     return unless @tabletop
-    @direction = @tabletop.right(@direction)
+    @direction = @tabletop.direction_after_right_turn(@direction)
     self
   end
 

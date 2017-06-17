@@ -8,4 +8,4 @@ COPY bin /app/bin
 COPY lib /app/lib
 COPY spec /app/spec
 
-CMD [ "bundle", "exec", "rspec" ]
+CMD [ "bundle", "exec", "rspec", "--format", "doc" ]
