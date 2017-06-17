@@ -57,7 +57,7 @@ end
 describe 'CLI.run' do
   expected_greeting = "Robot is ready to accept commands, type EXIT to exit."
 
-  it 'should accept empty string to exit' do
+  it 'should accept EXIT to exit' do
     expect_stdout(
       [ 'PLACE 2,3,EAST', 'REPORT', 'EXIT' ],
       "#{expected_greeting}\n2,3,EAST\n",

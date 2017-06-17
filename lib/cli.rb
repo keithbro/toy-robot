@@ -53,7 +53,9 @@ class CLI
       return "Invalid Arguments"
     end
 
-    return result.join(',') if command_type.eql?('REPORT') and !result.nil?
+    return result if result.nil?
+
+    return result.join(',') if command_type.eql?('REPORT')
 
     nil
   end
