@@ -34,7 +34,7 @@ If you don't want to use Docker and have Ruby already installed you can do:
 
     $ ruby -I lib bin/toy-robot-cli
 
-Once started you will see:
+Sample CLI output will be:
 
     Robot is ready to accept commands, type EXIT to exit.
     PLACE 2,3,NORTH
@@ -63,16 +63,9 @@ the container and runs the tests:
 
     $ ./dev-bin/docker-test.sh
 
-    # Docker container is built and starts...
-
 Or without Docker:
 
     $ rspec --format doc
-
-    ...................
-
-    Finished in 0.02517 seconds (files took 0.13065 seconds to load)
-    21 examples, 0 failures
 
 A Travis-CI project has been created that runs the test suite on every commit.
 
