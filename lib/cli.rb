@@ -1,10 +1,10 @@
 require 'robot'
-require 'world'
+require 'tabletop'
 
 class CLI
   def initialize()
     @robot = Robot.new
-    @world = World.new
+    @tabletop = Tabletop.new
     @command_types = [ 'PLACE', 'LEFT', 'RIGHT', 'MOVE', 'REPORT' ]
   end
 
@@ -30,12 +30,12 @@ class CLI
   def execute(command)
     command_type = command.split(/ /)[0]
 
-    # Whitelist valid commands to protect World instance from abuse.
+    # Whitelist valid commands to protect Tabletop instance from abuse.
     unless @command_types.include?(command_type)
       return "Invalid Command"
     end
 
-    world_method = command_type.downcase
+    robot_method = command_type.downcase
 
     # Responsibility lies with the CLI to convert strings to integers where
     # appropriate.
@@ -43,8 +43,10 @@ class CLI
       .split(/,/)
       .map { |arg| arg.match?(/^\d+$/) ? arg.to_i : arg }
 
+    args.unshift(@tabletop) if command_type.eql?('PLACE')
+
     begin
-      result = @world.send(world_method, @robot, *args)
+      result = @robot.send(robot_method, *args)
 
     # ArgumentError is user-error whereas anything else would be unexpected
     rescue ArgumentError

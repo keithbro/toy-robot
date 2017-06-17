@@ -4,7 +4,7 @@
 
 A simulation of a toy robot that has the following commands:
 
-* PLACE X,Y,F - places the robot in the world at coordinates X,Y facing in direction F
+* PLACE X,Y,F - places the robot on the table at coordinates X,Y facing in direction F
 * LEFT - turns the robot 90 degrees to the left
 * RIGHT - turns the robot 90 degress to the right
 * MOVE - moves the robot forward one space
