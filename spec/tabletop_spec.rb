@@ -2,7 +2,7 @@ require "tabletop"
 
 describe Tabletop do
   it "understands left and right rotations" do
-    tabletop = Tabletop.new
+    tabletop = Tabletop.new(4, 4)
 
     expect(tabletop.direction_after_left_turn('NORTH')).to eql('WEST')
     expect(tabletop.direction_after_left_turn('WEST')).to eql('SOUTH')
@@ -24,21 +24,30 @@ describe Tabletop do
   end
 
   it "understands forward movements" do
-    tabletop = Tabletop.new
+    tabletop = Tabletop.new(10, 15)
 
-    expect(tabletop.coords_after_move(1, 1, 'NORTH')).to eql([1, 2])
-    expect(tabletop.coords_after_move(1, 1, 'WEST')).to eql([0, 1])
-    expect(tabletop.coords_after_move(1, 1, 'SOUTH')).to eql([1, 0])
-    expect(tabletop.coords_after_move(1, 1, 'EAST')).to eql([2, 1])
+    expect(
+      tabletop.coords_after_move(0, 0, 'NORTH')
+    ).to eql([0, 1])
 
-    expect(tabletop.coords_after_move(0, 0, 'SOUTH')).to eql([0, 0])
+    expect(
+      tabletop.coords_after_move(0, 0, 'EAST')
+    ).to eql([1, 0])
+
+    expect(
+      tabletop.coords_after_move(0, tabletop.max_y, 'SOUTH')
+    ).to eql([0, tabletop.max_y - 1])
+
+    expect(
+      tabletop.coords_after_move(tabletop.max_x, 0, 'WEST')
+    ).to eql([tabletop.max_x - 1, 0])
 
     expect {
       tabletop.coords_after_move(-1, -1, 'SOUTH')
     }.to raise_exception('Invalid initial state (-1, -1, SOUTH)')
 
     expect {
-      tabletop.coords_after_move(1, 1, 'UP')
-    }.to raise_exception('Invalid initial state (1, 1, UP)')
+      tabletop.coords_after_move(0, 0, 'UP')
+    }.to raise_exception('Invalid initial state (0, 0, UP)')
   end
 end

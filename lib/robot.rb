@@ -28,7 +28,7 @@ class Robot
     self
   end
 
-  # Returnd an array containing the x coordinate, the y coordinate and the
+  # Returns an array containing the x coordinate, the y coordinate and the
   # direction of this robot. Returns nil if the robot has not been placed on
   # the table.
 

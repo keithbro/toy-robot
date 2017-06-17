@@ -2,6 +2,8 @@ require "robot"
 require "tabletop"
 
 describe Robot do
+  tabletop = Tabletop.new(4, 4)
+
   it "ignores commands if it's not on the table" do
     robot = Robot.new
     expect(robot.report()).to eql(nil)
@@ -12,7 +14,6 @@ describe Robot do
 
   it "can report its status" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 1, 2, 'SOUTH')
 
@@ -21,7 +22,6 @@ describe Robot do
 
   it "can move forward one unit" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 0, 0, 'NORTH')
     robot.move()
@@ -31,7 +31,6 @@ describe Robot do
 
   it "can turn left" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 0, 0, 'NORTH')
     robot.left()
@@ -41,7 +40,6 @@ describe Robot do
 
   it "can turn right" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 0, 0, 'NORTH')
     robot.right()
@@ -51,7 +49,6 @@ describe Robot do
 
   it "can move multiple times" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 1, 2, 'EAST')
     robot.move()
@@ -64,7 +61,6 @@ describe Robot do
 
   it "cannot move off the tabletop" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 4, 4, 'NORTH')
     robot.move()
@@ -74,7 +70,6 @@ describe Robot do
 
   it "cannot be placed off the tabletop" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 7, -3, 'NORTH')
 
@@ -83,7 +78,6 @@ describe Robot do
 
   it "cannot be placed in an invalid direction" do
     robot = Robot.new
-    tabletop = Tabletop.new
 
     robot.place(tabletop, 1, 1, 'UP')
 

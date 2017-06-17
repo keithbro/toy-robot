@@ -4,7 +4,7 @@ require 'tabletop'
 class CLI
   def initialize()
     @robot = Robot.new
-    @tabletop = Tabletop.new
+    @tabletop = Tabletop.new(4, 4)
     @command_types = [ 'PLACE', 'LEFT', 'RIGHT', 'MOVE', 'REPORT' ]
   end
 
