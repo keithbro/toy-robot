@@ -57,10 +57,20 @@ the container and runs the tests:
 
     ...................
 
-    Finished in 0.0236 seconds (files took 0.12891 seconds to load)
-    19 examples, 0 failures
+    Finished in 0.02517 seconds (files took 0.13065 seconds to load)
+    21 examples, 0 failures
+
+A Travis-CI project has been created that runs the test suite on every commit.
 
 ## Design
 
-For commentary on the design, please refer to the source code.
+For commentary on the design, please refer to the commentary that you will find
+inside the source code.
+
+## License
+
+Copyright (C) Keith Broughton.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Ruby itself.
 
