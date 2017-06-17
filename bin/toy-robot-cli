@@ -1,3 +1,5 @@
 require 'cli'
 
+# Creates a CLI instance, with a 4x4 tabletop.
+
 CLI.new(4, 4).run()

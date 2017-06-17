@@ -10,6 +10,7 @@ describe Robot do
     expect(robot.move()).to eql(nil)
     expect(robot.left()).to eql(nil)
     expect(robot.right()).to eql(nil)
+    expect(robot.report()).to eql(nil)
   end
 
   it "can report its status" do
@@ -51,10 +52,10 @@ describe Robot do
     robot = Robot.new
 
     robot.place(tabletop, 1, 2, 'EAST')
-    robot.move()
-    robot.move()
-    robot.left()
-    robot.move()
+    robot.move() # 2, 2, EAST
+    robot.move() # 3, 2, EAST
+    robot.left() # 3, 2, NORTH
+    robot.move() # 3, 3, NORTH
 
     expect(robot.report()).to eql([3, 3, 'NORTH'])
   end
@@ -62,24 +63,26 @@ describe Robot do
   it "cannot move off the tabletop" do
     robot = Robot.new
 
-    robot.place(tabletop, 4, 4, 'NORTH')
+    robot.place(tabletop, tabletop.max_x, tabletop.max_y, 'NORTH')
     robot.move()
 
-    expect(robot.report()).to eql([4, 4, 'NORTH'])
+    expect(robot.report()).to eql([tabletop.max_x, tabletop.max_y, 'NORTH'])
   end
 
   it "cannot be placed off the tabletop" do
     robot = Robot.new
 
-    robot.place(tabletop, 7, -3, 'NORTH')
+    robot.place(tabletop, tabletop.max_x + 1, 0, 'NORTH')
+    expect(robot.report()).to eql(nil)
 
+    robot.place(tabletop, 0, tabletop.max_y + 1, 'NORTH')
     expect(robot.report()).to eql(nil)
   end
 
   it "cannot be placed in an invalid direction" do
     robot = Robot.new
 
-    robot.place(tabletop, 1, 1, 'UP')
+    robot.place(tabletop, 0, 0, 'UP')
 
     expect(robot.report()).to eql(nil)
   end

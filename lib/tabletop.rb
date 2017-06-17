@@ -24,6 +24,12 @@ class Tabletop
   # (when you face NORTH and turn left you will be facing WEST, and this fact
   # will still be true in 500 years time), a tradeoff has been made and the
   # truth is duplicated!
+  #
+  # COMMENTARY: I started off by making the directions constants e.g. NORTH = 1,
+  # EAST = 2 etc. This would have worked but as far as I could see I would have
+  # needed to maintain a mapping in the CLI class to map the string NORTH to the
+  # constant NORTH. There may be a nice way to achieve that but for simplicity
+  # I decided to use strings everywhere.
 
   def direction_after_left_turn(direction)
     unless direction_is_valid?(direction)
@@ -80,6 +86,8 @@ class Tabletop
   end
 
   private
+    # Note that the lower bound for the tabletop is fixed at 0. This is to
+    # meet the requirement of 0,0 being the SOUTH WEST corner.
     def coordinates_are_valid?(x, y)
       0 <= x && x <= @max_x && 0 <= y && y <= @max_y
     end

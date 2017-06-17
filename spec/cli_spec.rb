@@ -53,7 +53,7 @@ describe 'CLI.execute' do
     expect_execute(cli, 'REPORT', nil)
   end
 
-  it 'should handle invalid placements' do
+  it 'should handle negative integer arguments' do
     cli = new_cli()
 
     expect_execute(cli, 'PLACE -1,-1,NORTH', nil)
@@ -75,10 +75,15 @@ describe 'CLI.run' do
   end
 end
 
+# Given a single command to issue via the CLI, assert that the return value is
+# as expected.
+
 def expect_execute(cli, command, expected_output)
   expect(cli.execute(command)).to eql(expected_output)
 end
 
+# Given an array of commands to issue via the CLI, assert that the STDOUT is as
+# expected.
 def expect_stdout(commands, expected_stdout)
   cli = new_cli()
 
