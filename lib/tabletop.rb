@@ -10,6 +10,20 @@ class Tabletop
   # Returns the direction an entity would be facing if it turned left from the
   # given direction. Throws an exception if the given direction is not a valid
   # one.
+  #
+  # COMMENTARY: The tabletop should govern the rules of movement and physics
+  # in its world. A robot, for example, cannot decide that if it turns LEFT
+  # it should then face SOUTH. This logic should live exclusively in the
+  # Tabletop class.
+  #
+  # COMMENTARY: Note that we have two Hashes here, one for turning LEFT and
+  # one for turning RIGHT. Probably, these could have been combined in to a
+  # single source of truth (the rules for turning left are the reverse of those
+  # for turning right). However in the interests of understandability and
+  # readability, and also since this type of data is highly unlikely to change
+  # (when you face NORTH and turn left you will be facing WEST, and this fact
+  # will still be true in 500 years time), a tradeoff has been made and the
+  # truth is duplicated!
 
   def direction_after_left_turn(direction)
     unless direction_is_valid?(direction)

@@ -44,18 +44,22 @@ class CLI
       .split(/,/)
       .map { |arg| begin Integer(arg) rescue arg end }
 
+    # Pass the tabletop as the first arg if the command is PLACE
     args.unshift(@tabletop) if command_type.eql?('PLACE')
 
     begin
       result = @robot.send(robot_method, *args)
 
-    # ArgumentError is user error whereas anything else would be unexpected
+    # ArgumentError is user error so show be rescued and handled nicely.
+    # Anything else is unexpected and should bubble up.
     rescue ArgumentError
       return "Invalid Arguments"
     end
 
     return result if result.nil?
 
+    # This is the right layer to serialize the (Array) output of REPORT to a
+    # string.
     return result.join(',') if command_type.eql?('REPORT')
 
     nil
