@@ -28,6 +28,14 @@ To run the CLI:
 
     # Docker container is built and starts...
 
+If you don't want to use Docker and have Ruby already installed you can do:
+
+    $ bundle install # the only requirement is rspec
+
+    $ ruby -I lib bin/toy-robot-cli
+
+Once started you will see:
+
     Robot is ready to accept commands, type EXIT to exit.
     PLACE 2,3,NORTH
     REPORT
@@ -56,6 +64,10 @@ the container and runs the tests:
     $ ./dev-bin/docker-test.sh
 
     # Docker container is built and starts...
+
+Or without Docker:
+
+    $ rspec --format doc
 
     ...................
 
