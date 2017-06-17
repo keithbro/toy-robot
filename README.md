@@ -67,7 +67,8 @@ Or without Docker:
 
     $ rspec --format doc
 
-A Travis-CI project has been created that runs the test suite on every commit.
+A Travis-CI project has been created (build status and link is at the top of
+the README) that runs the test suite on every commit.
 
 ## Design
 
