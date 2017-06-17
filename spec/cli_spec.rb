@@ -2,20 +2,20 @@ require 'cli'
 
 describe 'CLI.execute' do
   it 'should handle an unplaced REPORT' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'REPORT', nil)
   end
 
   it 'should handle PLACE' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'REPORT'         , '2,2,NORTH')
   end
 
   it 'should handle LEFT' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'LEFT'           , nil)
@@ -23,7 +23,7 @@ describe 'CLI.execute' do
   end
 
   it 'should handle RIGHT' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'RIGHT'          , nil)
@@ -31,7 +31,7 @@ describe 'CLI.execute' do
   end
 
   it 'should handle MOVE' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'MOVE'           , nil)
@@ -39,7 +39,7 @@ describe 'CLI.execute' do
   end
 
   it 'should handle invalid commands' do
-    cli = CLI.new()
+    cli = new_cli()
 
     expect_execute(cli, 'PLACE 2,2,NORTH', nil)
     expect_execute(cli, 'JUMP'           , 'Invalid Command')
@@ -47,10 +47,16 @@ describe 'CLI.execute' do
   end
 
   it 'should handle invalid args' do
-    cli = CLI.new()
+    cli = CLI.new(3, 3)
 
     expect_execute(cli, 'PLACE' , 'Invalid Arguments')
     expect_execute(cli, 'REPORT', nil)
+  end
+
+  it 'should handle invalid placements' do
+    cli = new_cli()
+
+    expect_execute(cli, 'PLACE -1,-1,NORTH', nil)
   end
 end
 
@@ -74,7 +80,7 @@ def expect_execute(cli, command, expected_output)
 end
 
 def expect_stdout(commands, expected_stdout)
-  cli = CLI.new()
+  cli = new_cli()
 
   mock_stdout = StringIO.new
   $stdout = mock_stdout
@@ -84,3 +90,6 @@ def expect_stdout(commands, expected_stdout)
   expect(mock_stdout.string).to eql(expected_stdout)
 end
 
+def new_cli
+  CLI.new(3, 4)
+end

@@ -2,9 +2,9 @@ require 'robot'
 require 'tabletop'
 
 class CLI
-  def initialize()
+  def initialize(max_x, max_y)
     @robot = Robot.new
-    @tabletop = Tabletop.new(4, 4)
+    @tabletop = Tabletop.new(max_x, max_y)
     @command_types = [ 'PLACE', 'LEFT', 'RIGHT', 'MOVE', 'REPORT' ]
   end
 
@@ -41,7 +41,7 @@ class CLI
     # appropriate.
     args = ( command.split(/ /)[1] || '' )
       .split(/,/)
-      .map { |arg| arg.match?(/^\d+$/) ? arg.to_i : arg }
+      .map { |arg| begin Integer(arg) rescue arg end }
 
     args.unshift(@tabletop) if command_type.eql?('PLACE')
 
