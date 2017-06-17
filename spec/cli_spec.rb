@@ -85,7 +85,7 @@ def expect_stdout(commands, expected_stdout)
   mock_stdout = StringIO.new
   $stdout = mock_stdout
 
-  allow(cli).to receive(:gets_chomp).and_return(*commands)
+  allow(cli).to receive(:get_command).and_return(*commands)
   cli.run()
   expect(mock_stdout.string).to eql(expected_stdout)
 end

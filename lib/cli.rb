@@ -11,15 +11,16 @@ class CLI
   def run()
     puts "Robot is ready to accept commands, type EXIT to exit."
 
-    while command = gets_chomp
+    while command = get_command
       break if command.eql?('EXIT')
       output = execute(command)
       puts output unless output.nil?
     end
   end
 
-  # Extracted to a function for mocking purposes.
-  def gets_chomp
+  # Gets a command from the command line. Extracted to a function for mocking
+  # purposes.
+  def get_command
     gets.chomp
   end
 
