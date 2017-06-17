@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/keithbro/toy-robot.svg?branch=master)](https://travis-ci.org/keithbro/toy-robot)
 
-A simulation of a toy robot that has the following commands:
+![Wall-E](http://68.media.tumblr.com/tumblr_m193kxpQYA1qhigt0o1_500.gif)
+
+A simulation of a toy robot on a tabletop that has the following commands:
 
 * PLACE X,Y,F - places the robot on the table at coordinates X,Y facing in direction F
 * LEFT - turns the robot 90 degrees to the left
